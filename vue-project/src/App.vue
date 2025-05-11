@@ -1,7 +1,15 @@
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      message: 'Hello Vue!'
+    }
+  }
+}
+</script>
 
 <template>
-  <h1>Hello Vue!</h1>
+  <h1>{{ message }}</h1>
 </template>
 
 <style>
