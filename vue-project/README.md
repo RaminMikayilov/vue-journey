@@ -1,29 +1,11 @@
-# vue-project
+# Interpolation
 
-This template should help get you started developing with Vue 3 in Vite.
+## 🧠 What is Interpolation?
 
-## Recommended IDE Setup
+Interpolation in Vue is used to insert dynamic values into the DOM. This can be plain text, or JavaScript expressions evaluated in the context of Vue's reactivity system.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Syntax:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
+```html
+{{ expression }}
 ```
