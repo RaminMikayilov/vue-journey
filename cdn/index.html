@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue with cdn</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ message }}</h1>
+      <p>Count: {{ count }}</p>
+      <button @click="increment">Increment</button>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "Hello Vue 3 with CDN!",
+            count: 0,
+          };
+        },
+        methods: {
+          increment() {
+            this.count++;
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
