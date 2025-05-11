@@ -2,7 +2,8 @@
 export default {
   data() {
     return {
-      message: 'Hello Vue!'
+      message: 'Hello Vue!',
+      status: 'test'
     }
   }
 }
@@ -10,6 +11,8 @@ export default {
 
 <template>
   <h1>{{ message }}</h1>
+  <p v-if="status === 'active'">Active</p>
+  <p v-else>Inactive</p>
 </template>
 
 <style>
