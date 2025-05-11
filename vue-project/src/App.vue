@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       message: 'Hello Vue!',
-      status: 'test',
+      status: 'active',
       tasks: [
         { id: 1, name: 'Task 1' },
         { id: 2, name: 'Task 2' },
@@ -11,7 +11,12 @@ export default {
       ],
       googleLink: 'https://www.google.com'
     }
-  }
+  },
+  methods: {
+    toggleStatus() {
+      this.status = this.status === 'active' ? 'inactive' : 'active';
+    }
+  },
 }
 </script>
 
@@ -32,7 +37,10 @@ export default {
   <!-- shorthand for v-bind -->
   <a :href="googleLink" target="_blank">Go to the Google</a>
 
-
+  <!-- v-on example -->
+  <button v-on:click="toggleStatus">Change status</button>
+  <!-- shorthand for v-on -->
+  <button @click="toggleStatus">Change status</button>
 </template>
 
 <style>
