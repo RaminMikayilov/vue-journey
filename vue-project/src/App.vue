@@ -2,7 +2,22 @@
 import { ref } from 'vue';
 
 const todos = ref([{ id: 1, title: 'test todo' }])
+const todo = ref('')
 const isAddModalOpen = ref(false)
+
+const addNewTodo = () => {
+  if (todo.value.trim() === '') {
+    alert('Please enter a todo title')
+    return
+  }
+  const newTodo = {
+    id: todos.value.length + 1,
+    title: todo.value,
+  }
+  todos.value.push(newTodo)
+  todo.value = ''
+  isAddModalOpen.value = false
+}
 
 </script>
 
@@ -23,10 +38,10 @@ const isAddModalOpen = ref(false)
   <div v-if="isAddModalOpen" class="modal">
     <div class="modal-content">
       <h2>Add Todo</h2>
-      <input type="text" placeholder="Todo title" />
+      <input type="text" placeholder="Todo title" v-model="todo" />
       <div class="modal-actions">
         <button @click="isAddModalOpen = false" class="close-btn">Close</button>
-        <button @click="" class="add-btn">Add</button>
+        <button @click="addNewTodo" class="add-btn">Add</button>
       </div>
     </div>
   </div>
