@@ -49,7 +49,8 @@ h1 {
 
 .delete-btn,
 .add-btn,
-.close-btn {
+.close-btn,
+.edit-btn {
   border: none;
   padding: 10px 15px;
   border-radius: 6px;
@@ -64,6 +65,16 @@ h1 {
 }
 
 .add-btn:hover {
+  background-color: #36a372;
+}
+
+.edit-btn {
+  background-color: #42b983;
+  color: white;
+  padding: 6px 10px;
+}
+
+.edit-btn:hover {
   background-color: #36a372;
 }
 
@@ -124,4 +135,11 @@ h1 {
 .modal-actions {
   display: flex;
   justify-content: flex-end;
+}
+
+.todo-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
