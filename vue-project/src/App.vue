@@ -19,6 +19,10 @@ const addNewTodo = () => {
   isAddModalOpen.value = false
 }
 
+const deleteTodo = (id) => {
+  todos.value = todos.value.filter(todo => todo.id !== id)
+}
+
 </script>
 
 <template>
@@ -30,9 +34,12 @@ const addNewTodo = () => {
     <ul class="todo-list">
       <li class="todo-item" v-for="(todo) of todos" :key="todo.id">
         <span class="todo-title">{{ todo.title }}</span>
-        <button class="delete-btn">x</button>
+        <button class="delete-btn" @click="deleteTodo(todo.id)">x</button>
       </li>
     </ul>
+    <div v-if="todos.length === 0" class="empty-todo">
+      <p>No todos available</p>
+    </div>
   </div>
 
   <div v-if="isAddModalOpen" class="modal">
@@ -89,6 +96,12 @@ h1 {
 .todo-title {
   font-size: 16px;
   color: #333;
+}
+
+.empty-todo {
+  text-align: center;
+  margin-top: 20px;
+  color: #999;
 }
 
 .delete-btn,
