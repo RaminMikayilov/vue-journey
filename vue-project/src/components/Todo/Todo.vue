@@ -6,6 +6,7 @@ const todos = ref([])
 const todo = ref('')
 const isAddModalOpen = ref(false)
 const selectedTodo = ref(null)
+const isLoading = ref(false)
 
 const addNewTodo = () => {
   if (todo.value.trim() === '') {
@@ -48,6 +49,7 @@ const editTodo = (id) => {
 }
 
 onMounted(() => {
+  isLoading.value = true
   fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
     .then(response => response.json())
     .then(data => {
@@ -55,6 +57,7 @@ onMounted(() => {
         id: todo.id,
         title: todo.title,
       }))
+      isLoading.value = false
     })
     .catch(error => console.error('Error fetching todos:', error))
 })
@@ -68,17 +71,20 @@ onMounted(() => {
       <button class="add-btn" @click="() => { isAddModalOpen = true; todo = ''; selectedTodo = null; }">Add
         todo</button>
     </div>
-    <ul class="todo-list">
-      <li class="todo-item" v-for="(todo) of todos" :key="todo.id">
-        <span class="todo-title">{{ todo.title }}</span>
-        <div class="todo-actions">
-          <button class="edit-btn" @click="editTodo(todo.id)">v</button>
-          <button class="delete-btn" @click="deleteTodo(todo.id)">x</button>
-        </div>
-      </li>
-    </ul>
-    <div v-if="todos.length === 0" class="empty-todo">
-      <p>No todos available</p>
+    <div v-if="isLoading" class="loading" />
+    <div v-else>
+      <ul class="todo-list">
+        <li class="todo-item" v-for="(todo) of todos" :key="todo.id">
+          <span class="todo-title">{{ todo.title }}</span>
+          <div class="todo-actions">
+            <button class="edit-btn" @click="editTodo(todo.id)">v</button>
+            <button class="delete-btn" @click="deleteTodo(todo.id)">x</button>
+          </div>
+        </li>
+      </ul>
+      <div v-if="todos.length === 0" class="empty-todo">
+        <p>No todos available</p>
+      </div>
     </div>
   </div>
 
