@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import './todo.css'
 
-const todos = ref([{ id: 1, title: 'test todo' }])
+const todos = ref([])
 const todo = ref('')
 const isAddModalOpen = ref(false)
 const selectedTodo = ref(null)
@@ -46,6 +46,18 @@ const editTodo = (id) => {
     isAddModalOpen.value = true
   }
 }
+
+onMounted(() => {
+  fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    .then(response => response.json())
+    .then(data => {
+      todos.value = data.map(todo => ({
+        id: todo.id,
+        title: todo.title,
+      }))
+    })
+    .catch(error => console.error('Error fetching todos:', error))
+})
 
 </script>
 
